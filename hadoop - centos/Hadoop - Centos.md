@@ -128,3 +128,138 @@
 #### 安装完成重启即可
 
 ![image-20230905153832987](./assets/image-20230905153832987.png)
+
+![image-20230905154044684](./assets/image-20230905154044684.png)
+
+![image-20230905154107037](./assets/image-20230905154107037.png)
+
+### 静态ip配置
+
+centos7.5的网络配置文件的位置是
+
+登录root用户
+
+![image-20230905154432675](./assets/image-20230905154432675.png)
+
+在桌面右键打开终端
+
+![image-20230905154523484](./assets/image-20230905154523484.png)
+
+配置vim
+
+```sh
+vim /etc/vimrc
+```
+
+
+
+![image-20230905154622661](./assets/image-20230905154622661.png)
+
+在文件末尾输入以下内容并保存退出:
+
+```sh
+set number
+set relativenumber
+```
+
+![image-20230905154729185](./assets/image-20230905154729185.png)
+
+#### 配置静态ip
+
+```sh
+vim /etc/sysconfig/network-scripts/ifcfg-ens33
+```
+
+改成如下:
+
+```sh
+TYPE="Ethernet"
+PROXY_METHOD="none"
+BROWSER_ONLY="no"
+BOOTPROTO="static"
+DEFROUTE="yes"
+IPV4_FAILURE_FATAL="no"
+IPV6INIT="yes"
+IPV6_AUTOCONF="yes"
+IPV6_DEFROUTE="yes"
+IPV6_FAILURE_FATAL="no"
+IPV6_ADDR_GEN_MODE="stable-privacy"
+NAME="ens33"
+UUID="这是id不需要修改 保持原来的值!!!"
+DEVICE="ens33"
+ONBOOT="yes"
+IPADDR=192.168.1.100
+GATEWAY=192.168.1.2
+DNS1=192.168.1.2
+```
+
+<img src="./assets/image-20230905155709276.png" alt="image-20230905155709276" style="zoom: 67%;" />
+
+#### 重启网络
+
+```sh
+service network restart
+```
+
+![image-20230905155905586](./assets/image-20230905155905586.png)
+
+出现`OK`即代表完成
+
+可输入
+
+```sh
+ifconfig
+```
+
+查看ip地址:
+
+<img src="./assets/image-20230905160301583.png" alt="image-20230905160301583" style="zoom: 67%;" />
+
+若仍未配置成功参考Ubuntu的[网络适配器](./hadoop - ubuntu/Hadoop - Ubuntu.md)
+
+配置`hosts`文件
+
+```sh
+vim /etc/hosts
+```
+
+输入以下内容:
+
+![image-20230905160545662](./assets/image-20230905160545662.png)
+
+同时建议将物理机的hosts文件也做修改成上文
+
+Windows的host文件位置在`C:\Windows\System32\drivers\etc\hosts`
+
+![image-20230905160803440](./assets/image-20230905160803440.png)
+
+#### 重启启用配置
+
+```sh
+reboot
+```
+
+### 安装jdk
+
+#### 在物理机尝试连接(ping)虚拟机
+
+```sh
+ping centos100
+```
+
+![image-20230905161315821](./assets/image-20230905161315821.png)
+
+可以连接说明上一步配置成功
+
+#### 传输jdk和hadoop
+
+在虚拟机中建立`/opt/software/`目录
+
+进入物理机存放jdk和hadoop的位置
+
+![image-20230905161634829](./assets/image-20230905161634829.png)
+
+```sh
+scp 
+```
+
