@@ -416,7 +416,7 @@ ll
 
 ![image-20230906165627143](./assets/image-20230906165627143.png)
 
-### 授予 `test` 用户 `免sudo` 权限
+### 授予 `test` 用户 `sudo时免密` 权限
 
 编辑sudoers文件
 
@@ -653,12 +653,376 @@ done
 
 ![image-20230906171905140](./assets/image-20230906171905140.png)
 
-#### 给分发脚本添加执行权限
+#### 给脚本添加执行权限
 
 ```sh
 chown +x xsync
 ll
 ```
+
+#### 将脚本复制到 `/bin/` 下
+
+这里需要使用 `root` 权限
+
+```
+cp /home/test/bin/xsync /bin/
+```
+
+![image-20230906203846324](./assets/image-20230906203846324.png)
+
+### 制作三台虚拟机的免密登录
+
+因为只有三台虚拟机 每台都有各自的功能
+
+没有多余的负载子节点 **所以需要将三台虚拟机都做成互相免密登录**
+
+事实上 子节点本应是不需要做对主节点的免密登录的
+
+这里只是因为作者电脑无法同时启动过多虚拟机
+
+#### 使用 `test` 用户生成密钥
+
+这一步三台虚拟机保持同步 都需要执行 (这里虚拟机可能会询问三个问题, 我们只需要保持默认即可, **直接回车**)
+
+```sh
+ssh-keygen -t rsa
+```
+
+![image-20230906204557019](./assets/image-20230906204557019.png)
+
+这样将会在 `test` 用户的主目录下生成一个 `.ssh` 的文件夹储存密钥:
+
+![image-20230906204614866](./assets/image-20230906204614866.png)
+
+#### 分发公钥
+
+注意这个的 `x` 和 `y` 在 `1` `2` `3` 中任意取
+
+既有 `3 * 3 = 9` 种情况来分发密钥
+
+在 `centos10x` 中输入:
+
+```sh
+ssh-copy-id centos10y
+```
+
+输入 `yes` 后在输入 `test@centos10y` 的用户密码
+
+![image-20230906210548181](./assets/image-20230906210548181.png)
+
+以下是 ` centos104` 的配置免密登录的过程:
+
+![image-20230906210956610](./assets/image-20230906210956610.png)
+
+### 集群
+
+#### 集群部署规划
+
+| 虚拟机 \ 分布式 | HDFS 分布式文件系统 | YARN 资源管理器 |
+| ------------------- | -------------------- | --------------- |
+| centos102           | NameNode + DataNode | NodeManager     |
+| centos103           | DataNode             | NodeManager + ResourceManager |
+| centos104           | SecondaryNameNode + DataNode | NodeManager |
+
+#### 集群默认配置文件
+
+集群的默认配置文件及其所在位置 (**无需更改**):
+
+- `core-default.xml`:  hadoop-common-3.1.3.jar/ core-default.xml 
+- `hdfs-default.xml`:  hadoop-hdfs-3.1.3.jar/ hdfs-default.xml
+- `yarn-default.xml`:  hadoop-yarn-common-3.1.3.jar/ yarn-default.xml 
+- `mapred-default.xml`:  hadoop-mapreduce-client-core-3.1.3.jar/ mapred-default.xml
+
+#### 集群自定义配置文件
+
+需要更改的自定义配置文件如下:
+
+- core-site.xml
+- hdfs-site.xml
+- yarn-site.xml
+- mapred.site.xml
+- workers
+
+这些配置文件都在目录 `/opt/module/hadoop-3.1.3/etc/hadoop` 下
+
+可以使用以下命令进入
+
+```sh
+cd /opt/module/hadoop-3.1.3/etc/hadoop
+```
+
+请将上述的五个配置文件分别改成如下内容:
+
+##### core-site.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License. See accompanying LICENSE file.
+-->
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+  <!-- 指定 NaneNode 地址 -->
+  <property>
+    <name>fs.defaultFS</name>
+    <value>hdfs://hadoop-ywn102:9820</value>
+  </property>
+  <!-- 指定 Hadoop 数据的存储目录 -->
+  <property>
+    <name>hadoop.tmp.dir</name>
+    <value>/opt/module/hadoop-3.1.3/data</value>
+  </property>
+  <!-- 配置 HDFS 网页登录使用的静态用户为 hadoop -->
+  <property>
+    <name>hadoop.http.staticuser.user</name>
+    <value>hadoop</value>
+  </property>
+  <!-- 配置该 Hadoop (superUser)允许通过代理访问的主机节点 -->
+  <property>
+    <name>hadoop.proxyuser.hadoop.hosts</name>
+    <value>*</value>
+  </property>
+  <!-- 配置该 Hadoop (superUser)允许通过代理用户所属组 -->
+  <property>
+    <name>hadoop.proxyuser.hadoop.groups</name>
+    <value>*</value>
+  </property>
+</configuration>
+```
+
+##### hdfs-site.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License. See accompanying LICENSE file.
+-->
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+  <!-- nn web端访问地址-->
+  <property>
+    <name>dfs.namenode.http-address</name>
+    <value>hadoop-ywn102:9870</value>
+  </property>
+  <!-- 2nn web端访问地址-->
+  <property>
+    <name>dfs.namenode.secondary.http-address</name>
+    <value>hadoop-ywn104:9868</value>
+  </property>
+</configuration>
+
+```
+
+##### yarn-site.xml
+
+```xml
+<?xml version="1.0"?>
+<!--
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License. See accompanying LICENSE file.
+-->
+<configuration>
+
+<!-- Site specific YARN configuration properties -->
+
+  <!-- 指定MR 用 shuffle -->
+  <property>
+    <name>yarn.nodemanager.aux-services</name>
+    <value>mapreduce_shuffle</value>
+  </property>
+
+  <!-- 指定ResourceManager的地址-->
+  <property>
+    <name>yarn.resourcemanager.hostname</name>
+    <value>hadoop-ywn103</value>
+  </property>
+
+  <!-- 环境变量的继承 -->
+  <property>
+    <name>yarn.nodemanager.env-whitelist</name>
+    <value>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PREPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_MAPRED_HOME</value>
+  </property>
+
+  <!-- yarn容器允许分配的最大最小内存 -->
+  <property>
+    <name>yarn.scheduler.minimum-allocation-mb</name>
+    <value>512</value>
+  </property>
+  <property>
+    <name>yarn.scheduler.maximum-allocation-mb</name>
+    <value>4096</value>
+  </property>
+
+  <!-- yarn容器允许管理的物理内存大小 -->
+  <property>
+    <name>yarn.nodemanager.resource.memory-mb</name>
+    <value>4096</value>
+  </property>
+
+  <!-- 关闭yarn对物理内存和虚拟内存的限制检查 -->
+  <property>
+    <name>yarn.nodemanager.pmem-check-enabled</name>
+    <value>false</value>
+  </property>
+
+  <property>
+    <name>yarn.nodemanager.vmem-check-enabled</name>
+    <value>false</value>
+  </property>
+    
+</configuration>
+```
+
+##### yarn-site.xml
+
+```xml
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License. See accompanying LICENSE file.
+-->
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+  <!-- 指定MapReduce程序运行在Yarn上 -->
+  <property>
+    <name>mapreduce.framework.name</name>
+    <value>yarn</value>
+  </property>
+</configuration>
+```
+
+##### workers
+
+```
+centos102
+centos103
+centos104
+```
+
+![image-20230906213740170](./assets/image-20230906213740170.png)
+
+##### 向其他节点同步配置文件
+
+```sh
+xsync /opt/module/hadoop-3.1.3/etc/hadoop/
+```
+
+#### 集群常用端口
+
+| Daemon            | App                        | Hadoop2     | Hadoop3 |
+| ----------------- | -------------------------- | ----------- | ------- |
+| NameNode Port     | Hadoop HDFS NameNode       | 8020 / 9000 | 9820    |
+|                   | Hadoop HDFS NN HTTP UI     | 50070       | 9870    |
+| Secondary NN Port | Secondary NameNode         | 50091       | 9869    |
+|                   | Secondary NameNode HTTP UI | 50090       | 9868    |
+| DataNode Port     | Hadoop HDFS DataNode IPC   | 50020       | 9867    |
+|                   | Hadoop HDFS DataNode       | 50010       | 9866    |
+|                   | Hadoop HDFS DN HTTP UI     | 50075       | 9864    |
+
+### 启动集群
+
+前面准备了那么多 终于到了启动这一步, 如果担心出错可以将三台虚拟机关机后, 直接将虚拟机的文件夹备份即可, 抑或可以使用VMware自带的快照功能
+
+#### 格式化
+
+启动之前应先格式化节点 (三台虚拟机都需要格式化)
+
+```sh
+hdfs namenode -format
+```
+
+出现以下结果即为格式化成功
+
+![image-20230906214751761](./assets/image-20230906214751761.png)
+
+#### 启动
+
+在 `centos102` 的 `$HADOOP_HOME` 下输入:
+
+```sh
+sbin/start-dfs.sh
+```
+
+(`$HADOOP_HOME` 也即 `/opt/module/hadoop-3.1.3`)
+
+然后在 `centos103` 的 `$HADOOP_HOME` 下输入:
+```sh
+sbin/start-yarn.sh
+```
+
+![image-20230906215902256](./assets/image-20230906215902256.png)
+
+![image-20230906215909857](./assets/image-20230906215909857.png)
+
+使用 `jps` 命令查看启动情况:
+
+![image-20230906224006392](./assets/image-20230906224006392.png)
+
+![image-20230906224014362](./assets/image-20230906224014362.png)
+
+![image-20230906224022383](./assets/image-20230906224022383.png)
+
+然后在**物理机的**浏览器查看启动情况
+
+- http://centos102:9870
+- http://centos103:8088
+
+显示情况分别如下:
+
+![image-20230906224119232](./assets/image-20230906224119232.png)
+
+![image-20230906224125289](./assets/image-20230906224125289.png)
+
+
+
+
 
 
 
