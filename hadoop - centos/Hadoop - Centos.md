@@ -259,33 +259,33 @@ ping centos100
 
 #### 打开XShell配置连接信息
 
-![image-20230906160954909](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906160954909.png)
+![image-20230906160954909](./assets/image-20230906160954909.png)
 
 #### 输入连接名称
 
-![image-20230906160803752](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906160803752.png)
+![image-20230906160803752](./assets/image-20230906160803752.png)
 
 #### 连接
 
-![image-20230906161047072](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906161047072.png)
+![image-20230906161047072](./assets/image-20230906161047072.png)
 
-![image-20230906161130350](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906161130350.png)
+![image-20230906161130350](./assets/image-20230906161130350.png)
 
 #### 输入连接用户名
 
-![image-20230906161157873](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906161157873.png)
+![image-20230906161157873](./assets/image-20230906161157873.png)
 
 #### 输入连接用户密码
 
-![image-20230906161305570](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906161305570.png)
+![image-20230906161305570](./assets/image-20230906161305570.png)
 
 若输入错误可以在`所有会话`页面更改:
 
-![image-20230906161418554](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906161418554.png)
+![image-20230906161418554](./assets/image-20230906161418554.png)
 
 #### 连接成功
 
-![image-20230906161454471](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906161454471.png)
+![image-20230906161454471](./assets/image-20230906161454471.png)
 
 ### 传输后续用到的安装包
 
@@ -304,21 +304,21 @@ mkdir /opt/module/
 ll /opt/
 ```
 
-![image-20230906161746203](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906161746203.png)
+![image-20230906161746203](./assets/image-20230906161746203.png)
 
 在 `XShell` 打开 `Xftp`: 
 
-![image-20230906162021877](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906162021877.png)
+![image-20230906162021877](./assets/image-20230906162021877.png)
 
 在左侧(左侧是物理机的文件管理器)进入安装包的位置
 
 在右侧进入`/opt/software/`目录
 
-![image-20230906162154907](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906162154907.png)
+![image-20230906162154907](./assets/image-20230906162154907.png)
 
 开始传输(选择左侧需要传输的, 拖入右侧即可):
 
-![image-20230906162221417](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906162221417.png)
+![image-20230906162221417](./assets/image-20230906162221417.png)
 
 #### 在控制台查看:
 
@@ -327,7 +327,7 @@ cd /opt/software/
 ll
 ```
 
-![image-20230906162317016](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906162317016.png)
+![image-20230906162317016](./assets/image-20230906162317016.png)
 
 ### 开始安装JDK
 
@@ -339,7 +339,7 @@ tar -zxvf jdk-8u212-linux-x64.tar.gz -C /opt/module/
 
 安装成功示例:
 
-![image-20230906162646764](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906162646764.png)
+![image-20230906162646764](./assets/image-20230906162646764.png)
 
 #### 添加Java的环境变量
 
@@ -355,7 +355,7 @@ export JAVA_HOME=/opt/module/jdk1.8.0_212
 export PATH=$PATH:$JAVA_HOME/bin
 ```
 
-![image-20230906163330001](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906163330001.png)
+![image-20230906163330001](./assets/image-20230906163330001.png)
 
 #### 加载环境变量
 
@@ -364,7 +364,7 @@ source /etc/profile
 java -version
 ```
 
-![image-20230906163427379](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906163427379.png)
+![image-20230906163427379](./assets/image-20230906163427379.png)
 
 ### 安装Hadoop
 
@@ -389,7 +389,7 @@ export HADOOP_HOME=/opt/module/hadoop-3.1.3
 export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
 ```
 
-![image-20230906164145900](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906164145900.png)
+![image-20230906164145900](./assets/image-20230906164145900.png)
 
 #### 加载环境变量
 
@@ -398,7 +398,7 @@ source /etc/profile
 hadoop version
 ```
 
-![image-20230906164235776](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906164235776.png)
+![image-20230906164235776](./assets/image-20230906164235776.png)
 
 如果输入 `hadoop version` 出错则先 `sycn` 后重启( `reboot` )
 
@@ -414,7 +414,7 @@ hadoop version
 ll
 ```
 
-![image-20230906165627143](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906165627143.png)
+![image-20230906165627143](./assets/image-20230906165627143.png)
 
 ### 授予 `test` 用户 `免sudo` 权限
 
@@ -430,7 +430,7 @@ vim /etc/sudoers
 test    ALL=(ALL)       NOPASSWD:ALL
 ```
 
-![image-20230906193421102](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906193421102.png)
+![image-20230906193421102](./assets/image-20230906193421102.png)
 
 ### 将 `module` 目录权限交给 `test`
 
@@ -444,7 +444,7 @@ chown test:test -R /opt/module/
 ll
 ```
 
-![image-20230906170951973](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906170951973.png)
+![image-20230906170951973](./assets/image-20230906170951973.png)
 
 ### 测试本地运行
 
@@ -458,7 +458,7 @@ vim word.txt
 
 输入任意单词的内容
 
-![image-20230906170102521](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906170102521.png)
+![image-20230906170102521](./assets/image-20230906170102521.png)
 
 然后回到hadoop安装目录
 
@@ -476,7 +476,7 @@ hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-3.1.3.jar wordcount 
 
 #### 成功输出样例
 
-![image-20230906170406523](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906170406523.png)
+![image-20230906170406523](./assets/image-20230906170406523.png)
 
 查看输出结果
 
@@ -484,7 +484,7 @@ hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-3.1.3.jar wordcount 
 cat wcoutput/part-r-00000
 ```
 
-![image-20230906170517087](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906170517087.png)
+![image-20230906170517087](./assets/image-20230906170517087.png)
 
 ### 克隆虚拟机
 
@@ -500,19 +500,19 @@ poweroff
 
 然后在 `VMware` 的 `我的计算机` 中选择 `centos100` `右键` 选择 `管理` 在选择 `克隆`
 
-![image-20230906194235133](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906194235133.png)
+![image-20230906194235133](./assets/image-20230906194235133.png)
 
-![image-20230906194458508](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906194458508.png)
+![image-20230906194458508](./assets/image-20230906194458508.png)
 
-![image-20230906194511949](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906194511949.png)
+![image-20230906194511949](./assets/image-20230906194511949.png)
 
-![image-20230906194526388](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906194526388.png)
+![image-20230906194526388](./assets/image-20230906194526388.png)
 
-![image-20230906194540751](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906194540751.png)
+![image-20230906194540751](./assets/image-20230906194540751.png)
 
-![image-20230906194606830](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906194606830.png)
+![image-20230906194606830](./assets/image-20230906194606830.png)
 
-![image-20230906194614613](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906194614613.png)
+![image-20230906194614613](./assets/image-20230906194614613.png)
 
 同样的方法克隆三台
 
@@ -535,15 +535,15 @@ poweroff
 
 `centos102` 启动完成: 
 
-![image-20230906195607790](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906195607790.png)
+![image-20230906195607790](./assets/image-20230906195607790.png)
 
 在 `XShell` 中连接 (**此时应该确保只有 `centos102` 在启动状态 其他的虚拟机都应保持关机**):
 
-![image-20230906195710675](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906195710675.png)
+![image-20230906195710675](./assets/image-20230906195710675.png)
 
 这里选择 `XShell` 中的 `centos100` 是因为现在虚拟机 `centos102` 的ip仍是 `centos100` 的 也即 `192.168.1.100`
 
-![image-20230906195839725](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906195839725.png)
+![image-20230906195839725](./assets/image-20230906195839725.png)
 
 ##### 编辑设备名
 
@@ -557,7 +557,7 @@ vim /etc/hostname
 centos102
 ```
 
-![image-20230906195952856](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906195952856.png)
+![image-20230906195952856](./assets/image-20230906195952856.png)
 
 ##### 编辑静态IP
 
@@ -567,7 +567,7 @@ vim /etc/sysconfig/network-scripts/ifcfg-ens33
 
 将 `IPADDR` 的值改成 `192.168.1.102`: 
 
-![image-20230906200125641](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906200125641.png)
+![image-20230906200125641](./assets/image-20230906200125641.png)
 
 #### 然后重启虚拟机
 
@@ -581,33 +581,33 @@ reboot
 
 可以复制 `XShell` 中的配置:
 
-![image-20230906200516495](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906200516495.png)
+![image-20230906200516495](./assets/image-20230906200516495.png)
 
-![image-20230906200547609](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906200547609.png)
+![image-20230906200547609](./assets/image-20230906200547609.png)
 
 然后将副本重命名成 `centos102`
 
 同时将对应的主机改成 `centos102`:
 
-![image-20230906201113408](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906201113408.png)
+![image-20230906201113408](./assets/image-20230906201113408.png)
 
 然后选择连接:
 
-![image-20230906201229277](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906201229277.png)
+![image-20230906201229277](./assets/image-20230906201229277.png)
 
 验证:
 
-![image-20230906201413206](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906201413206.png)
+![image-20230906201413206](./assets/image-20230906201413206.png)
 
 #### 重复上述 `克隆虚拟机` 的操作:
 
 重复上述 `克隆虚拟机` 的操作得到 `centos102` 和 `centos103` (若上述操作没有错误, 可以保持已完成配置的虚拟机的开启状态):
 
-![image-20230906201821047](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906201821047.png)
+![image-20230906201821047](./assets/image-20230906201821047.png)
 
-![image-20230906201746477](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906201746477.png)
+![image-20230906201746477](./assets/image-20230906201746477.png)
 
-![image-20230906201800167](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906201800167.png)
+![image-20230906201800167](./assets/image-20230906201800167.png)
 
 ### 编写集群文件分发脚本
 
@@ -651,7 +651,7 @@ for host in centos102 centos103 centos104; do
 done
 ```
 
-![image-20230906171905140](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906171905140.png)
+![image-20230906171905140](./assets/image-20230906171905140.png)
 
 #### 给分发脚本添加执行权限
 
