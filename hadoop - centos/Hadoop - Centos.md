@@ -11,6 +11,8 @@
 
 - `jdk1.8`:  [jdk-8u212-linux-x64.tar.gz](https://www.oracle.com/rs/java/technologies/javase/javase8u211-later-archive-downloads.html)
 
+- `XShell & XFtp`: [XShell XFtp](https://www.xshell.com/zh/free-for-home-school/)
+
 - 存储虚拟机的空间留够`30GB` (仅安装, 建议50GB)
 
 ## 基础知识:
@@ -170,7 +172,7 @@ set relativenumber
 vim /etc/sysconfig/network-scripts/ifcfg-ens33
 ```
 
-改成如下:
+改成如下 (`注意不要在等号前后留有空格`):
 
 ```sh
 TYPE="Ethernet"
@@ -239,9 +241,13 @@ Windows的host文件位置在`C:\Windows\System32\drivers\etc\hosts`
 reboot
 ```
 
-### 安装jdk
+### XShell连接
+
+XShell连接可以更方便的操作 比如复制 文件的传输
 
 #### 在物理机尝试连接(ping)虚拟机
+
+这一步是测试物理机能否访问虚拟机
 
 ```sh
 ping centos100
@@ -249,17 +255,430 @@ ping centos100
 
 ![image-20230905161315821](./assets/image-20230905161315821.png)
 
-可以连接说明上一步配置成功
+可以连接说明物理机能访问虚拟机成功
 
-#### 传输jdk和hadoop
+#### 打开XShell配置连接信息
 
-在虚拟机中建立`/opt/software/`目录
+![image-20230906160954909](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906160954909.png)
 
-进入物理机存放jdk和hadoop的位置
+#### 输入连接名称
 
-![image-20230905161634829](./assets/image-20230905161634829.png)
+![image-20230906160803752](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906160803752.png)
+
+#### 连接
+
+![image-20230906161047072](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906161047072.png)
+
+![image-20230906161130350](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906161130350.png)
+
+#### 输入连接用户名
+
+![image-20230906161157873](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906161157873.png)
+
+#### 输入连接用户密码
+
+![image-20230906161305570](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906161305570.png)
+
+若输入错误可以在`所有会话`页面更改:
+
+![image-20230906161418554](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906161418554.png)
+
+#### 连接成功
+
+![image-20230906161454471](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906161454471.png)
+
+### 传输后续用到的安装包
+
+#### 建立目录
+
+建立如下目录 `/opt/software/` 和 `/opt/module/`目录
+
+##### 目录用途:
+
+- `/opt/software/`: 用于存放安装包
+- `/opt/module/`: 安装软件的安装位置
 
 ```sh
-scp 
+mkdir /opt/software/
+mkdir /opt/module/
+ll /opt/
 ```
+
+![image-20230906161746203](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906161746203.png)
+
+在 `XShell` 打开 `Xftp`: 
+
+![image-20230906162021877](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906162021877.png)
+
+在左侧(左侧是物理机的文件管理器)进入安装包的位置
+
+在右侧进入`/opt/software/`目录
+
+![image-20230906162154907](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906162154907.png)
+
+开始传输(选择左侧需要传输的, 拖入右侧即可):
+
+![image-20230906162221417](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906162221417.png)
+
+#### 在控制台查看:
+
+```sh
+cd /opt/software/
+ll
+```
+
+![image-20230906162317016](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906162317016.png)
+
+### 开始安装JDK
+
+#### 解压安装包
+
+```sh
+tar -zxvf jdk-8u212-linux-x64.tar.gz -C /opt/module/
+```
+
+安装成功示例:
+
+![image-20230906162646764](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906162646764.png)
+
+#### 添加Java的环境变量
+
+```sh
+vim /etc/profile.d/my_env.sh
+```
+
+输入以下内容
+
+```sh
+# JAVA_HOME
+export JAVA_HOME=/opt/module/jdk1.8.0_212
+export PATH=$PATH:$JAVA_HOME/bin
+```
+
+![image-20230906163330001](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906163330001.png)
+
+#### 加载环境变量
+
+```sh
+source /etc/profile
+java -version
+```
+
+![image-20230906163427379](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906163427379.png)
+
+### 安装Hadoop
+
+#### 解压安装包
+
+```sh
+cd /opt/software/
+tar -zxvf hadoop-3.1.3.tar.gz -C /opt/module/
+```
+
+#### 添加Hadoop环境变量
+
+```sh
+vim /etc/profile.d/my_env.sh
+```
+
+添加以下内容:
+
+```sh
+# HADOOP_HOME
+export HADOOP_HOME=/opt/module/hadoop-3.1.3
+export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
+```
+
+![image-20230906164145900](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906164145900.png)
+
+#### 加载环境变量
+
+```sh
+source /etc/profile
+hadoop version
+```
+
+![image-20230906164235776](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906164235776.png)
+
+如果输入 `hadoop version` 出错则先 `sycn` 后重启( `reboot` )
+
+#### hadoop目录结构
+
+- bin: 存放对Hadoop相关服务（HDFS,YARN）进行操作的脚本
+- etc: Hadoop的配置文件目录，存放Hadoop的配置文件
+- lib: 存放Hadoop的本地库（对数据进行压缩解压缩功能）
+- sbin: 存放启动或停止Hadoop相关服务的脚本 
+- share: 存放Hadoop的依赖jar包、文档、和官方案例
+
+```sh
+ll
+```
+
+![image-20230906165627143](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906165627143.png)
+
+### 授予 `test` 用户 `免sudo` 权限
+
+编辑sudoers文件
+
+```sh
+vim /etc/sudoers
+```
+
+在`root ALL=(ALL) ALL`这一行下面添加
+
+```sh
+test    ALL=(ALL)       NOPASSWD:ALL
+```
+
+![image-20230906193421102](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906193421102.png)
+
+### 将 `module` 目录权限交给 `test`
+
+```sh
+chown test:test -R /opt/module/
+```
+
+查看目录权限
+
+```sh
+ll
+```
+
+![image-20230906170951973](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906170951973.png)
+
+### 测试本地运行
+
+#### 创建测试输入用例
+
+```sh
+mkdir wcinput
+cd wcinput/
+vim word.txt
+```
+
+输入任意单词的内容
+
+![image-20230906170102521](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906170102521.png)
+
+然后回到hadoop安装目录
+
+```sh
+cd $HADOOP_HOME
+```
+
+#### 执行本地运行测试
+
+`wordcount`是一个统计单词数量的命令
+
+```sh
+hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-3.1.3.jar wordcount wcinput/ wcoutput
+```
+
+#### 成功输出样例
+
+![image-20230906170406523](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906170406523.png)
+
+查看输出结果
+
+```sh
+cat wcoutput/part-r-00000
+```
+
+![image-20230906170517087](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906170517087.png)
+
+### 克隆虚拟机
+
+上一步已经测试完成, 接下来将虚拟机克隆, 以完成完全分布式运行
+
+#### 关闭centos100虚拟机
+
+```sh
+poweroff
+```
+
+#### 克隆
+
+然后在 `VMware` 的 `我的计算机` 中选择 `centos100` `右键` 选择 `管理` 在选择 `克隆`
+
+![image-20230906194235133](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906194235133.png)
+
+![image-20230906194458508](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906194458508.png)
+
+![image-20230906194511949](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906194511949.png)
+
+![image-20230906194526388](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906194526388.png)
+
+![image-20230906194540751](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906194540751.png)
+
+![image-20230906194606830](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906194606830.png)
+
+![image-20230906194614613](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906194614613.png)
+
+同样的方法克隆三台
+
+- `centos101`: 暂时无用(空间不足可以不备份)
+
+- `centos102`: TODO
+
+- `centos103`: TODO
+
+- `centos104`: TODO
+
+#### 修改设备克隆出来的设备名及其静态IP
+
+现在总共有5台虚拟机
+
+我们将从 `centos102` 轮流启动
+
+- 修改设备名: 需要以 `root` 用户编辑 `/etc/hostname` 文件
+- 修改静态IP配置: 需要以 `root` 用户编辑 `/etc/`
+
+`centos102` 启动完成: 
+
+![image-20230906195607790](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906195607790.png)
+
+在 `XShell` 中连接 (**此时应该确保只有 `centos102` 在启动状态 其他的虚拟机都应保持关机**):
+
+![image-20230906195710675](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906195710675.png)
+
+这里选择 `XShell` 中的 `centos100` 是因为现在虚拟机 `centos102` 的ip仍是 `centos100` 的 也即 `192.168.1.100`
+
+![image-20230906195839725](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906195839725.png)
+
+##### 编辑设备名
+
+```sh
+vim /etc/hostname
+```
+
+输入以下内容
+
+```sh
+centos102
+```
+
+![image-20230906195952856](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906195952856.png)
+
+##### 编辑静态IP
+
+```sh
+vim /etc/sysconfig/network-scripts/ifcfg-ens33
+```
+
+将 `IPADDR` 的值改成 `192.168.1.102`: 
+
+![image-20230906200125641](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906200125641.png)
+
+#### 然后重启虚拟机
+
+```sh
+reboot
+```
+
+重启后虚拟机 `centos102` 的ip将更改为 `192.168.1.102` 
+
+在 `XShell` 中再次使用先前配置的 `centos100` 就无法再次连接  
+
+可以复制 `XShell` 中的配置:
+
+![image-20230906200516495](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906200516495.png)
+
+![image-20230906200547609](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906200547609.png)
+
+然后将副本重命名成 `centos102`
+
+同时将对应的主机改成 `centos102`:
+
+![image-20230906201113408](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906201113408.png)
+
+然后选择连接:
+
+![image-20230906201229277](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906201229277.png)
+
+验证:
+
+![image-20230906201413206](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906201413206.png)
+
+#### 重复上述 `克隆虚拟机` 的操作:
+
+重复上述 `克隆虚拟机` 的操作得到 `centos102` 和 `centos103` (若上述操作没有错误, 可以保持已完成配置的虚拟机的开启状态):
+
+![image-20230906201821047](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906201821047.png)
+
+![image-20230906201746477](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906201746477.png)
+
+![image-20230906201800167](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906201800167.png)
+
+### 编写集群文件分发脚本
+
+这个脚本将十分方便的帮助我们在集群中个各个节点 `传输/同步` 文件
+
+```sh
+su test    # 切换用户
+cd         # 进入用户主目录
+mkdir bin  # 创建脚本文件夹
+cd bin     # 进入脚本文件夹
+vim xsync  # 创建脚本
+```
+
+```sh
+#!/bin/bash
+#1. 判断参数个数
+if [ $# -lt 1 ]; then
+  echo Not Enough Arguement!
+  exit
+fi
+#2. 遍历集群所有机器
+for host in centos102 centos103 centos104; do
+  echo ==================== $host ====================
+  #3. 遍历所有目录，挨个发送
+  for file in $@; do
+    #4. 判断文件是否存在
+    if [ -e $file ]; then
+      #5. 获取父目录
+      pdir=$(
+        cd -P $(dirname $file)
+        pwd
+      )
+      #6. 获取当前文件的名称
+      fname=$(basename $file)
+      ssh $host "mkdir -p $pdir"
+      rsync -av $pdir/$fname $host:$pdir
+    else
+      echo $file does not exists!
+    fi
+  done
+done
+```
+
+![image-20230906171905140](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop - centos\assets\image-20230906171905140.png)
+
+#### 给分发脚本添加执行权限
+
+```sh
+chown +x xsync
+ll
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
