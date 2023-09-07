@@ -778,7 +778,7 @@ cd /opt/module/hadoop-3.1.3/etc/hadoop
   <!-- 指定 NaneNode 地址 -->
   <property>
     <name>fs.defaultFS</name>
-    <value>hdfs://hadoop-ywn102:9820</value>
+    <value>hdfs://centos102:9820</value>
   </property>
   <!-- 指定 Hadoop 数据的存储目录 -->
   <property>
@@ -828,12 +828,12 @@ cd /opt/module/hadoop-3.1.3/etc/hadoop
   <!-- nn web端访问地址-->
   <property>
     <name>dfs.namenode.http-address</name>
-    <value>hadoop-ywn102:9870</value>
+    <value>centos102:9870</value>
   </property>
   <!-- 2nn web端访问地址-->
   <property>
     <name>dfs.namenode.secondary.http-address</name>
-    <value>hadoop-ywn104:9868</value>
+    <value>centos104:9868</value>
   </property>
 </configuration>
 
@@ -869,7 +869,7 @@ cd /opt/module/hadoop-3.1.3/etc/hadoop
   <!-- 指定ResourceManager的地址-->
   <property>
     <name>yarn.resourcemanager.hostname</name>
-    <value>hadoop-ywn103</value>
+    <value>centos103</value>
   </property>
 
   <!-- 环境变量的继承 -->
