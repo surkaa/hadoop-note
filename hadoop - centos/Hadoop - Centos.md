@@ -609,7 +609,9 @@ reboot
 
 ![image-20230906201800167](./assets/image-20230906201800167.png)
 
-### 编写集群文件分发脚本
+### 编写集群脚本
+
+#### 集群文件分发
 
 这个脚本将十分方便的帮助我们在集群中个各个节点 `传输/同步` 文件
 
@@ -628,7 +630,7 @@ if [ $# -lt 1 ]; then
   echo Not Enough Arguement!
   exit
 fi
-#2. 遍历集群所有机器
+#2. 遍历集群所有机器 这里写`centos102 centos103 centos104`是为了后续克隆虚拟机所用
 for host in centos102 centos103 centos104; do
   echo ==================== $host ====================
   #3. 遍历所有目录，挨个发送
@@ -653,22 +655,84 @@ done
 
 ![image-20230906171905140](./assets/image-20230906171905140.png)
 
-#### 给脚本添加执行权限
+##### 给脚本添加执行权限
 
 ```sh
 chown +x xsync
 ll
 ```
 
-#### 将脚本复制到 `/bin/` 下
+##### 将脚本复制到 `/bin/` 下
 
-这里需要使用 `root` 权限
+这里需要使用 `root` 权限(切换root用户)
 
 ```
 cp /home/test/bin/xsync /bin/
 ```
 
 ![image-20230906203846324](./assets/image-20230906203846324.png)
+
+#### 集群检查 `jpsall` 脚本
+
+```sh
+vim /home/test/bin/jpsall
+```
+
+输入以下内容
+
+```sh
+#!/bin/bash
+for host in centos102 centos103 centos104
+do
+echo =============== $host ===============
+ssh $host jps $@ | grep -v Jps
+done
+```
+
+类似上一个脚本 `xsync` 同样给脚本添加执行权限 然后添加到 `/bin/` 下
+
+#### 集群 `myhadoop` 群起群停脚本
+
+```sh
+vim /home/test/bin/myhadoop
+```
+
+输入以下内容
+
+```sh
+#!/bin/bash
+if [ $# -lt 1 ]; then
+  echo "No Args Input..."
+  echo "Please Use: $0 [start|stop]"
+  exit
+fi
+case $1 in
+"start")
+  echo " ====== Starting Hadoop Cluster ======"
+  echo " --------------- Starting HDFS ---------------"
+  ssh centos102 "/opt/module/hadoop-3.1.3/sbin/start-dfs.sh"
+  echo " --------------- Starting YARN ---------------"
+  ssh centos103 "/opt/module/hadoop-3.1.3/sbin/start-yarn.sh"
+  echo " --------------- Starting History Server ---------------"
+  ssh centos102 "/opt/module/hadoop-3.1.3/bin/mapred --daemon start historyserver"
+  ;;
+"stop")
+  echo " ===== Stopping Hadoop Cluster ====="
+  echo " --------------- Stopping History Server ---------------"
+  ssh centos102 "/opt/module/hadoop-3.1.3/bin/mapred --daemon stop historyserver"
+  echo " --------------- Stopping YARN ---------------"
+  ssh centos103 "/opt/module/hadoop-3.1.3/sbin/stop-yarn.sh"
+  echo " --------------- Stopping HDFS ---------------"
+  ssh centos102 "/opt/module/hadoop-3.1.3/sbin/stop-dfs.sh"
+  ;;
+*)
+  echo "Input Args Error..."
+  echo "Please Use: $0 [start|stop]"
+  ;;
+esac
+```
+
+类似上一个脚本 `xsync` 同样给脚本添加执行权限 然后添加到 `/bin/` 下
 
 ### 制作三台虚拟机的免密登录
 
@@ -982,7 +1046,7 @@ hdfs namenode -format
 
 ![image-20230906214751761](./assets/image-20230906214751761.png)
 
-#### 启动
+#### 启动HDFS
 
 在 `centos102` 的 `$HADOOP_HOME` 下输入:
 
@@ -991,6 +1055,8 @@ sbin/start-dfs.sh
 ```
 
 (`$HADOOP_HOME` 也即 `/opt/module/hadoop-3.1.3`)
+
+#### 启动YARN
 
 然后在 `centos103` 的 `$HADOOP_HOME` 下输入:
 ```sh
@@ -1009,16 +1075,149 @@ sbin/start-yarn.sh
 
 ![image-20230906224022383](./assets/image-20230906224022383.png)
 
+#### 启动HistoryServer
+
+```sh
+bin/mapred --daemon start historyserver
+```
+
+![image-20230907085304999](./assets/image-20230907085304999.png)
+
 然后在**物理机的**浏览器查看启动情况
 
 - http://centos102:9870
 - http://centos103:8088
+- http://centos102:19888/jobhistory
 
 显示情况分别如下:
 
-![image-20230906224119232](./assets/image-20230906224119232.png)
+![image-20230907085423171](./assets/image-20230907085423171.png)
 
-![image-20230906224125289](./assets/image-20230906224125289.png)
+![image-20230907085428029](./assets/image-20230907085428029.png)
+
+![image-20230907085404090](./assets/image-20230907085404090.png)
+
+#### 使用脚本群起群停 查看
+
+停止上一步启动的hadoop
+
+```sh
+myhadoop stop
+```
+
+![image-20230907084953391](./assets/image-20230907084953391.png)
+
+以上是手动启动hadoop 我们可以使用编写的 `myhadoop` 脚本群起hadoop
+
+```sh
+myhadoop start
+```
+
+![image-20230907084410776](./assets/image-20230907084410776.png)
+
+使用 `jpsall` 脚本 查看启动情况
+
+```sh
+jpsall
+```
+
+![image-20230907084708944](./assets/image-20230907084708944.png)
+
+### 优化配置
+
+#### 历史服务器配置优化
+
+为了在 `http://centos102:19888/jobhistory` 查看历史服务器的启动情况
+
+我们在 `mapred-site.xml` 追加以下内容 (应先停止hadoop `myhadoop stop`):
+
+```xml
+  <!-- 历史服务器端地址 -->
+  <property>
+    <name>mapreduce.jobhistory.address</name>
+    <value>centos102:10020</value>
+  </property>
+  <!-- 历史服务器web端地址 -->
+  <property>
+    <name>mapreduce.jobhistory.webapp.address</name>
+    <value>centos102:19888</value>
+  </property>
+```
+
+![image-20230907090205965](./assets/image-20230907090205965.png)
+
+再使用 `xsync` 分发最新的脚本
+
+```sh
+xsync etc/hadoop/mapred-site.xml
+```
+
+
+
+![image-20230907090308849](./assets/image-20230907090308849.png)
+
+#### 配置日志聚集
+
+应用运行完成以后，将程序运行日志信息上传到HDFS系统上
+
+可以方便的查看到程序运行详情，方便开发调试
+
+注意：开启日志聚集功能，需要重新启动 `NodeManager` `ResourceManager` 和 `HistoryServer`
+
+在 `yarn-site.xml` 追加以下配置:
+
+```xml
+  <!-- 开启日志聚集功能 -->
+  <property>
+    <name>yarn.log-aggregation-enable</name>
+    <value>true</value>
+  </property>
+  <!-- 设置日志聚集服务器地址 -->
+  <property>
+    <name>yarn.log.server.url</name>
+    <value>http://centos102:19888/jobhistory/logs</value>
+  </property>
+  <!-- 设置日志保留时间为7天 -->
+  <property>
+    <name>yarn.log-aggregation.retain-seconds</name>
+    <value>604800</value>
+  </property>
+```
+
+![image-20230907090747588](./assets/image-20230907090747588.png)
+
+再次使用 `xsync` 分发脚本
+
+```sh
+xsync etc/hadoop/yarn-site.xml
+```
+
+![image-20230907090915744](./assets/image-20230907090915744.png)
+
+#### 重新启动
+
+```sh
+myhadoop start
+jpsall
+```
+
+![image-20230907091142038](./assets/image-20230907091142038.png)
+
+日志:
+
+http://centos102:19888/jobhistory/logs
+
+![image-20230907091309172](./assets/image-20230907091309172.png)
+
+
+
+
+
+
+
+
+
+
 
 
 
