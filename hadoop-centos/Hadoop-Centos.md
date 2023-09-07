@@ -27,7 +27,7 @@
 
 - hosts文件是什么
 
-## 安装虚拟机
+## 开始
 
 ### 在VMware创建虚拟机并配置
 
@@ -1245,3 +1245,8 @@ http://centos102:19888/jobhistory/logs
 
 
 
+<center>
+<a href="https://github.com/winingYang/hadoop-note/edit/master/hadoop-centos/Hadoop-Centos.md">
+在 GitHub 上编辑此页
+</a>
+</center>
