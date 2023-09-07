@@ -31,109 +31,109 @@
 
 ### 在VMware创建虚拟机并配置
 
-![image-20230905150644931](./assets/image-20230905150644931.png)
+<img src="./assets/image-20230905150644931.png" alt="image-20230905150644931" style="zoom: 67%;" />
 
 选择 17.x
 
-![image-20230905150719565](./assets/image-20230905150719565.png)
+<img src="./assets/image-20230905150719565.png" alt="image-20230905150719565" style="zoom:67%;" />
 
-![image-20230905150733037](./assets/image-20230905150733037.png)
+<img src="./assets/image-20230905150733037.png" alt="image-20230905150733037" style="zoom:80%;" />
 
-![image-20230905150745228](./assets/image-20230905150745228.png)
+<img src="./assets/image-20230905150745228.png" alt="image-20230905150745228" style="zoom:80%;" />
 
-![image-20230905150946753](./assets/image-20230905150946753.png)
+<img src="./assets/image-20230905150946753.png" alt="image-20230905150946753" style="zoom:80%;" />
 
-![image-20230905151002798](./assets/image-20230905151002798.png)
+<img src="./assets/image-20230905151002798.png" alt="image-20230905151002798" style="zoom:80%;" />
 
-![image-20230905151016660](./assets/image-20230905151016660.png)
+<img src="./assets/image-20230905151016660.png" alt="image-20230905151016660" style="zoom:80%;" />
 
-![image-20230905151025641](./assets/image-20230905151025641.png)
+<img src="./assets/image-20230905151025641.png" alt="image-20230905151025641" style="zoom:67%;" />
 
-![image-20230905151033755](./assets/image-20230905151033755.png)
+<img src="./assets/image-20230905151033755.png" alt="image-20230905151033755" style="zoom:67%;" />
 
-![image-20230905151042417](./assets/image-20230905151042417.png)
+<img src="./assets/image-20230905151042417.png" alt="image-20230905151042417" style="zoom:67%;" />
 
-![image-20230905151053661](./assets/image-20230905151053661.png)
+<img src="./assets/image-20230905151053661.png" alt="image-20230905151053661" style="zoom:67%;" />
 
-![image-20230905151106126](./assets/image-20230905151106126.png)
+<img src="./assets/image-20230905151106126.png" alt="image-20230905151106126" style="zoom:67%;" />
 
-![image-20230905151115743](./assets/image-20230905151115743.png)
+<img src="./assets/image-20230905151115743.png" alt="image-20230905151115743" style="zoom:67%;" />
 
-![image-20230905151127771](./assets/image-20230905151127771.png)
+<img src="./assets/image-20230905151127771.png" alt="image-20230905151127771" style="zoom: 80%;" />
 
-![image-20230905151208247](./assets/image-20230905151208247.png)
+<img src="./assets/image-20230905151208247.png" alt="image-20230905151208247" style="zoom:80%;" />
 
-![image-20230905151235392](./assets/image-20230905151235392.png)
+<img src="./assets/image-20230905151235392.png" alt="image-20230905151235392" style="zoom:67%;" />
 
 ### 开启虚拟机
 
 #### 选择语言
 
-![image-20230905151659733](./assets/image-20230905151659733.png)
+<img src="./assets/image-20230905151659733.png" alt="image-20230905151659733" style="zoom:50%;" />
 
 #### 选择时区
 
-![image-20230905151737452](./assets/image-20230905151737452.png)
+<img src="./assets/image-20230905151737452.png" alt="image-20230905151737452" style="zoom:50%;" />
 
 #### 配置轻量版桌面
 
-![image-20230905151918569](./assets/image-20230905151918569.png)
+<img src="./assets/image-20230905151918569.png" alt="image-20230905151918569" style="zoom:50%;" />
 
 
 
-![image-20230905151935178](./assets/image-20230905151935178.png)
+<img src="./assets/image-20230905151935178.png" alt="image-20230905151935178" style="zoom:67%;" />
 
 #### 禁用Kdump
 
-![image-20230905152014905](./assets/image-20230905152014905.png)
+<img src="./assets/image-20230905152014905.png" alt="image-20230905152014905" style="zoom: 67%;" />
 
-![image-20230905152027330](./assets/image-20230905152027330.png)
+<img src="./assets/image-20230905152027330.png" alt="image-20230905152027330" style="zoom:67%;" />
 
 
 
 #### 磁盘分区
 
-![image-20230905152103680](./assets/image-20230905152103680.png)
+<img src="./assets/image-20230905152103680.png" alt="image-20230905152103680" style="zoom:67%;" />
 
-![image-20230905152129281](./assets/image-20230905152129281.png)
+<img src="./assets/image-20230905152129281.png" alt="image-20230905152129281" style="zoom:67%;" />
 
 #### 网路配置
 
-![image-20230905152156814](./assets/image-20230905152156814.png)
+<img src="./assets/image-20230905152156814.png" alt="image-20230905152156814" style="zoom:67%;" />
 
 
 
-![image-20230905152221308](./assets/image-20230905152221308.png)
+<img src="./assets/image-20230905152221308.png" alt="image-20230905152221308" style="zoom:67%;" />
 
 #### 开始安装虚拟机
 
-![image-20230905152244103](./assets/image-20230905152244103.png)
+<img src="./assets/image-20230905152244103.png" alt="image-20230905152244103" style="zoom:67%;" />
 
 #### 设置Root密码
 
-![image-20230905152317483](./assets/image-20230905152317483.png)
+<img src="./assets/image-20230905152317483.png" alt="image-20230905152317483" style="zoom:67%;" />
 
-![image-20230905152330118](./assets/image-20230905152330118.png)
+<img src="./assets/image-20230905152330118.png" alt="image-20230905152330118" style="zoom:67%;" />
 
 #### 添加`test`用户
 
 这里`test`可以是其他非关键字的用户名
 
-![image-20230905152434210](./assets/image-20230905152434210.png)
+<img src="./assets/image-20230905152434210.png" alt="image-20230905152434210" style="zoom:67%;" />
 
-![image-20230905152448964](./assets/image-20230905152448964.png)
+<img src="./assets/image-20230905152448964.png" alt="image-20230905152448964" style="zoom:67%;" />
 
 等待安装...
 
-![image-20230905152712736](./assets/image-20230905152712736.png)
+<img src="./assets/image-20230905152712736.png" alt="image-20230905152712736" style="zoom:67%;" />
 
 #### 安装完成重启即可
 
-![image-20230905153832987](./assets/image-20230905153832987.png)
+<img src="./assets/image-20230905153832987.png" alt="image-20230905153832987" style="zoom:67%;" />
 
-![image-20230905154044684](./assets/image-20230905154044684.png)
+<img src="./assets/image-20230905154044684.png" alt="image-20230905154044684" style="zoom:67%;" />
 
-![image-20230905154107037](./assets/image-20230905154107037.png)
+<img src="./assets/image-20230905154107037.png" alt="image-20230905154107037" style="zoom:67%;" />
 
 ### 静态ip配置
 
@@ -141,11 +141,11 @@ centos7.5的网络配置文件的位置是
 
 登录root用户
 
-![image-20230905154432675](./assets/image-20230905154432675.png)
+<img src="./assets/image-20230905154432675.png" alt="image-20230905154432675" style="zoom:67%;" />
 
 在桌面右键打开终端
 
-![image-20230905154523484](./assets/image-20230905154523484.png)
+<img src="./assets/image-20230905154523484.png" alt="image-20230905154523484" style="zoom:67%;" />
 
 配置vim
 
@@ -155,7 +155,7 @@ vim /etc/vimrc
 
 
 
-![image-20230905154622661](./assets/image-20230905154622661.png)
+<img src="./assets/image-20230905154622661.png" alt="image-20230905154622661" style="zoom:50%;" />
 
 在文件末尾输入以下内容并保存退出:
 
@@ -164,7 +164,7 @@ set number
 set relativenumber
 ```
 
-![image-20230905154729185](./assets/image-20230905154729185.png)
+<img src="./assets/image-20230905154729185.png" alt="image-20230905154729185" style="zoom:50%;" />
 
 #### 配置静态ip
 
@@ -203,7 +203,7 @@ DNS1=192.168.1.2
 service network restart
 ```
 
-![image-20230905155905586](./assets/image-20230905155905586.png)
+<img src="./assets/image-20230905155905586.png" alt="image-20230905155905586" style="zoom:50%;" />
 
 出现`OK`即代表完成
 
@@ -215,7 +215,7 @@ ifconfig
 
 查看ip地址:
 
-<img src="./assets/image-20230905160301583.png" alt="image-20230905160301583" style="zoom: 67%;" />
+<img src="./assets/image-20230905160301583.png" alt="image-20230905160301583" style="zoom: 50%;" />
 
 若仍未配置成功参考Ubuntu的[网络适配器](./hadoop - ubuntu/Hadoop - Ubuntu.md)
 
@@ -227,13 +227,13 @@ vim /etc/hosts
 
 输入以下内容:
 
-![image-20230905160545662](./assets/image-20230905160545662.png)
+<img src="./assets/image-20230905160545662.png" alt="image-20230905160545662" style="zoom:50%;" />
 
 同时建议将物理机的hosts文件也做修改成上文
 
 Windows的host文件位置在`C:\Windows\System32\drivers\etc\hosts`
 
-![image-20230905160803440](./assets/image-20230905160803440.png)
+<img src="./assets/image-20230905160803440.png" alt="image-20230905160803440" style="zoom: 80%;" />
 
 #### 重启启用配置
 
@@ -253,39 +253,39 @@ XShell连接可以更方便的操作 比如复制 文件的传输
 ping centos100
 ```
 
-![image-20230905161315821](./assets/image-20230905161315821.png)
+<img src="./assets/image-20230905161315821.png" alt="image-20230905161315821" style="zoom:80%;" />
 
 可以连接说明物理机能访问虚拟机成功
 
 #### 打开XShell配置连接信息
 
-![image-20230906160954909](./assets/image-20230906160954909.png)
+<img src="./assets/image-20230906160954909.png" alt="image-20230906160954909" style="zoom:50%;" />
 
 #### 输入连接名称
 
-![image-20230906160803752](./assets/image-20230906160803752.png)
+<img src="./assets/image-20230906160803752.png" alt="image-20230906160803752" style="zoom: 67%;" />
 
 #### 连接
 
-![image-20230906161047072](./assets/image-20230906161047072.png)
+<img src="./assets/image-20230906161047072.png" alt="image-20230906161047072" style="zoom: 67%;" />
 
-![image-20230906161130350](./assets/image-20230906161130350.png)
+<img src="./assets/image-20230906161130350.png" alt="image-20230906161130350" style="zoom:50%;" />
 
 #### 输入连接用户名
 
-![image-20230906161157873](./assets/image-20230906161157873.png)
+<img src="./assets/image-20230906161157873.png" alt="image-20230906161157873" style="zoom: 67%;" />
 
 #### 输入连接用户密码
 
-![image-20230906161305570](./assets/image-20230906161305570.png)
+<img src="./assets/image-20230906161305570.png" alt="image-20230906161305570" style="zoom:67%;" />
 
 若输入错误可以在`所有会话`页面更改:
 
-![image-20230906161418554](./assets/image-20230906161418554.png)
+<img src="./assets/image-20230906161418554.png" alt="image-20230906161418554" style="zoom:67%;" />
 
 #### 连接成功
 
-![image-20230906161454471](./assets/image-20230906161454471.png)
+<img src="./assets/image-20230906161454471.png" alt="image-20230906161454471" style="zoom:67%;" />
 
 ### 传输后续用到的安装包
 
@@ -304,21 +304,21 @@ mkdir /opt/module/
 ll /opt/
 ```
 
-![image-20230906161746203](./assets/image-20230906161746203.png)
+<img src="./assets/image-20230906161746203.png" alt="image-20230906161746203" style="zoom:67%;" />
 
 在 `XShell` 打开 `Xftp`: 
 
-![image-20230906162021877](./assets/image-20230906162021877.png)
+<img src="./assets/image-20230906162021877.png" alt="image-20230906162021877" style="zoom:67%;" />
 
 在左侧(左侧是物理机的文件管理器)进入安装包的位置
 
 在右侧进入`/opt/software/`目录
 
-![image-20230906162154907](./assets/image-20230906162154907.png)
+<img src="./assets/image-20230906162154907.png" alt="image-20230906162154907" style="zoom: 50%;" />
 
 开始传输(选择左侧需要传输的, 拖入右侧即可):
 
-![image-20230906162221417](./assets/image-20230906162221417.png)
+<img src="./assets/image-20230906162221417.png" alt="image-20230906162221417" style="zoom: 50%;" />
 
 #### 在控制台查看:
 
@@ -327,7 +327,7 @@ cd /opt/software/
 ll
 ```
 
-![image-20230906162317016](./assets/image-20230906162317016.png)
+<img src="./assets/image-20230906162317016.png" alt="image-20230906162317016" style="zoom:50%;" />
 
 ### 开始安装JDK
 
@@ -339,7 +339,7 @@ tar -zxvf jdk-8u212-linux-x64.tar.gz -C /opt/module/
 
 安装成功示例:
 
-![image-20230906162646764](./assets/image-20230906162646764.png)
+<img src="./assets/image-20230906162646764.png" alt="image-20230906162646764" style="zoom: 50%;" />
 
 #### 添加Java的环境变量
 
@@ -355,7 +355,7 @@ export JAVA_HOME=/opt/module/jdk1.8.0_212
 export PATH=$PATH:$JAVA_HOME/bin
 ```
 
-![image-20230906163330001](./assets/image-20230906163330001.png)
+<img src="./assets/image-20230906163330001.png" alt="image-20230906163330001" style="zoom:50%;" />
 
 #### 加载环境变量
 
@@ -364,7 +364,7 @@ source /etc/profile
 java -version
 ```
 
-![image-20230906163427379](./assets/image-20230906163427379.png)
+<img src="./assets/image-20230906163427379.png" alt="image-20230906163427379" style="zoom:50%;" />
 
 ### 安装Hadoop
 
@@ -389,7 +389,7 @@ export HADOOP_HOME=/opt/module/hadoop-3.1.3
 export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
 ```
 
-![image-20230906164145900](./assets/image-20230906164145900.png)
+<img src="./assets/image-20230906164145900.png" alt="image-20230906164145900" style="zoom:50%;" />
 
 #### 加载环境变量
 
@@ -398,7 +398,7 @@ source /etc/profile
 hadoop version
 ```
 
-![image-20230906164235776](./assets/image-20230906164235776.png)
+<img src="./assets/image-20230906164235776.png" alt="image-20230906164235776" style="zoom:50%;" />
 
 如果输入 `hadoop version` 出错则先 `sycn` 后重启( `reboot` )
 
@@ -414,7 +414,7 @@ hadoop version
 ll
 ```
 
-![image-20230906165627143](./assets/image-20230906165627143.png)
+<img src="./assets/image-20230906165627143.png" alt="image-20230906165627143" style="zoom:50%;" />
 
 ### 授予 `test` 用户 `sudo时免密` 权限
 
@@ -430,7 +430,7 @@ vim /etc/sudoers
 test    ALL=(ALL)       NOPASSWD:ALL
 ```
 
-![image-20230906193421102](./assets/image-20230906193421102.png)
+<img src="./assets/image-20230906193421102.png" alt="image-20230906193421102" style="zoom: 67%;" />
 
 ### 将 `module` 目录权限交给 `test`
 
@@ -444,7 +444,7 @@ chown test:test -R /opt/module/
 ll
 ```
 
-![image-20230906170951973](./assets/image-20230906170951973.png)
+<img src="./assets/image-20230906170951973.png" alt="image-20230906170951973" style="zoom: 67%;" />
 
 ### 测试本地运行
 
@@ -458,7 +458,7 @@ vim word.txt
 
 输入任意单词的内容
 
-![image-20230906170102521](./assets/image-20230906170102521.png)
+<img src="./assets/image-20230906170102521.png" alt="image-20230906170102521" style="zoom:50%;" />
 
 然后回到hadoop安装目录
 
@@ -476,7 +476,7 @@ hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-3.1.3.jar wordcount 
 
 #### 成功输出样例
 
-![image-20230906170406523](./assets/image-20230906170406523.png)
+<img src="./assets/image-20230906170406523.png" alt="image-20230906170406523" style="zoom: 50%;" />
 
 查看输出结果
 
@@ -484,7 +484,7 @@ hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-3.1.3.jar wordcount 
 cat wcoutput/part-r-00000
 ```
 
-![image-20230906170517087](./assets/image-20230906170517087.png)
+<img src="./assets/image-20230906170517087.png" alt="image-20230906170517087" style="zoom:67%;" />
 
 ### 克隆虚拟机
 
@@ -500,19 +500,19 @@ poweroff
 
 然后在 `VMware` 的 `我的计算机` 中选择 `centos100` `右键` 选择 `管理` 在选择 `克隆`
 
-![image-20230906194235133](./assets/image-20230906194235133.png)
+<img src="./assets/image-20230906194235133.png" alt="image-20230906194235133" style="zoom:50%;" />
 
-![image-20230906194458508](./assets/image-20230906194458508.png)
+<img src="./assets/image-20230906194458508.png" alt="image-20230906194458508" style="zoom: 50%;" />
 
-![image-20230906194511949](./assets/image-20230906194511949.png)
+<img src="./assets/image-20230906194511949.png" alt="image-20230906194511949" style="zoom:50%;" />
 
-![image-20230906194526388](./assets/image-20230906194526388.png)
+<img src="./assets/image-20230906194526388.png" alt="image-20230906194526388" style="zoom:50%;" />
 
-![image-20230906194540751](./assets/image-20230906194540751.png)
+<img src="./assets/image-20230906194540751.png" alt="image-20230906194540751" style="zoom:50%;" />
 
-![image-20230906194606830](./assets/image-20230906194606830.png)
+<img src="./assets/image-20230906194606830.png" alt="image-20230906194606830" style="zoom:50%;" />
 
-![image-20230906194614613](./assets/image-20230906194614613.png)
+<img src="./assets/image-20230906194614613.png" alt="image-20230906194614613" style="zoom:50%;" />
 
 同样的方法克隆三台
 
@@ -535,15 +535,15 @@ poweroff
 
 `centos102` 启动完成: 
 
-![image-20230906195607790](./assets/image-20230906195607790.png)
+<img src="./assets/image-20230906195607790.png" alt="image-20230906195607790" style="zoom:50%;" />
 
 在 `XShell` 中连接 (**此时应该确保只有 `centos102` 在启动状态 其他的虚拟机都应保持关机**):
 
-![image-20230906195710675](./assets/image-20230906195710675.png)
+<img src="./assets/image-20230906195710675.png" alt="image-20230906195710675" style="zoom:50%;" />
 
 这里选择 `XShell` 中的 `centos100` 是因为现在虚拟机 `centos102` 的ip仍是 `centos100` 的 也即 `192.168.1.100`
 
-![image-20230906195839725](./assets/image-20230906195839725.png)
+<img src="./assets/image-20230906195839725.png" alt="image-20230906195839725" style="zoom:67%;" />
 
 ##### 编辑设备名
 
@@ -567,7 +567,7 @@ vim /etc/sysconfig/network-scripts/ifcfg-ens33
 
 将 `IPADDR` 的值改成 `192.168.1.102`: 
 
-![image-20230906200125641](./assets/image-20230906200125641.png)
+<img src="./assets/image-20230906200125641.png" alt="image-20230906200125641" style="zoom:50%;" />
 
 #### 然后重启虚拟机
 
@@ -581,7 +581,7 @@ reboot
 
 可以复制 `XShell` 中的配置:
 
-![image-20230906200516495](./assets/image-20230906200516495.png)
+<img src="./assets/image-20230906200516495.png" alt="image-20230906200516495" style="zoom:50%;" />
 
 ![image-20230906200547609](./assets/image-20230906200547609.png)
 
@@ -589,15 +589,15 @@ reboot
 
 同时将对应的主机改成 `centos102`:
 
-![image-20230906201113408](./assets/image-20230906201113408.png)
+<img src="./assets/image-20230906201113408.png" alt="image-20230906201113408" style="zoom:50%;" />
 
 然后选择连接:
 
-![image-20230906201229277](./assets/image-20230906201229277.png)
+<img src="./assets/image-20230906201229277.png" alt="image-20230906201229277" style="zoom:50%;" />
 
 验证:
 
-![image-20230906201413206](./assets/image-20230906201413206.png)
+<img src="./assets/image-20230906201413206.png" alt="image-20230906201413206" style="zoom:50%;" />
 
 #### 重复上述 `克隆虚拟机` 的操作:
 
@@ -653,7 +653,7 @@ for host in centos102 centos103 centos104; do
 done
 ```
 
-![image-20230906171905140](./assets/image-20230906171905140.png)
+<img src="./assets/image-20230906171905140.png" alt="image-20230906171905140" style="zoom:50%;" />
 
 ##### 给脚本添加执行权限
 
@@ -752,11 +752,11 @@ esac
 ssh-keygen -t rsa
 ```
 
-![image-20230906204557019](./assets/image-20230906204557019.png)
+<img src="./assets/image-20230906204557019.png" alt="image-20230906204557019" style="zoom:50%;" />
 
 这样将会在 `test` 用户的主目录下生成一个 `.ssh` 的文件夹储存密钥:
 
-![image-20230906204614866](./assets/image-20230906204614866.png)
+<img src="./assets/image-20230906204614866.png" alt="image-20230906204614866" style="zoom:50%;" />
 
 #### 分发公钥
 
@@ -772,11 +772,11 @@ ssh-copy-id centos10y
 
 输入 `yes` 后在输入 `test@centos10y` 的用户密码
 
-![image-20230906210548181](./assets/image-20230906210548181.png)
+<img src="./assets/image-20230906210548181.png" alt="image-20230906210548181" style="zoom:50%;" />
 
 以下是 ` centos104` 的配置免密登录的过程:
 
-![image-20230906210956610](./assets/image-20230906210956610.png)
+<img src="./assets/image-20230906210956610.png" alt="image-20230906210956610" style="zoom:50%;" />
 
 ### 集群
 
@@ -1044,7 +1044,7 @@ hdfs namenode -format
 
 出现以下结果即为格式化成功
 
-![image-20230906214751761](./assets/image-20230906214751761.png)
+<img src="./assets/image-20230906214751761.png" alt="image-20230906214751761" style="zoom: 50%;" />
 
 #### 启动HDFS
 
@@ -1091,11 +1091,11 @@ bin/mapred --daemon start historyserver
 
 显示情况分别如下:
 
-![image-20230907085423171](./assets/image-20230907085423171.png)
+<img src="./assets/image-20230907085423171.png" alt="image-20230907085423171" style="zoom: 33%;" />
 
-![image-20230907085428029](./assets/image-20230907085428029.png)
+<img src="./assets/image-20230907085428029.png" alt="image-20230907085428029" style="zoom:33%;" />
 
-![image-20230907085404090](./assets/image-20230907085404090.png)
+<img src="./assets/image-20230907085404090.png" alt="image-20230907085404090" style="zoom:33%;" />
 
 #### 使用脚本群起群停 查看
 
@@ -1105,7 +1105,7 @@ bin/mapred --daemon start historyserver
 myhadoop stop
 ```
 
-![image-20230907084953391](./assets/image-20230907084953391.png)
+<img src="./assets/image-20230907084953391.png" alt="image-20230907084953391" style="zoom:50%;" />
 
 以上是手动启动hadoop 我们可以使用编写的 `myhadoop` 脚本群起hadoop
 
@@ -1113,7 +1113,7 @@ myhadoop stop
 myhadoop start
 ```
 
-![image-20230907084410776](./assets/image-20230907084410776.png)
+<img src="./assets/image-20230907084410776.png" alt="image-20230907084410776" style="zoom:50%;" />
 
 使用 `jpsall` 脚本 查看启动情况
 
@@ -1121,7 +1121,7 @@ myhadoop start
 jpsall
 ```
 
-![image-20230907084708944](./assets/image-20230907084708944.png)
+<img src="./assets/image-20230907084708944.png" alt="image-20230907084708944" style="zoom:50%;" />
 
 ### 优化配置
 
@@ -1144,7 +1144,7 @@ jpsall
   </property>
 ```
 
-![image-20230907090205965](./assets/image-20230907090205965.png)
+<img src="./assets/image-20230907090205965.png" alt="image-20230907090205965" style="zoom: 50%;" />
 
 再使用 `xsync` 分发最新的脚本
 
@@ -1154,7 +1154,7 @@ xsync etc/hadoop/mapred-site.xml
 
 
 
-![image-20230907090308849](./assets/image-20230907090308849.png)
+<img src="./assets/image-20230907090308849.png" alt="image-20230907090308849" style="zoom:50%;" />
 
 #### 配置日志聚集
 
@@ -1184,7 +1184,7 @@ xsync etc/hadoop/mapred-site.xml
   </property>
 ```
 
-![image-20230907090747588](./assets/image-20230907090747588.png)
+<img src="./assets/image-20230907090747588.png" alt="image-20230907090747588" style="zoom:50%;" />
 
 再次使用 `xsync` 分发脚本
 
@@ -1192,7 +1192,7 @@ xsync etc/hadoop/mapred-site.xml
 xsync etc/hadoop/yarn-site.xml
 ```
 
-![image-20230907090915744](./assets/image-20230907090915744.png)
+<img src="./assets/image-20230907090915744.png" alt="image-20230907090915744" style="zoom:50%;" />
 
 #### 重新启动
 
@@ -1201,13 +1201,13 @@ myhadoop start
 jpsall
 ```
 
-![image-20230907091142038](./assets/image-20230907091142038.png)
+<img src="./assets/image-20230907091142038.png" alt="image-20230907091142038" style="zoom:50%;" />
 
 日志:
 
 http://centos102:19888/jobhistory/logs
 
-![image-20230907091309172](./assets/image-20230907091309172.png)
+<img src="./assets/image-20230907091309172.png" alt="image-20230907091309172" style="zoom: 33%;" />
 
 
 
