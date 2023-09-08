@@ -1,31 +1,35 @@
 # Hadoop 真分布式安装笔记
 
+## 目标:
+
+搭建三台虚拟机组成的 `Hadoop` 集群
+
+集成  `HDFS分布式文件系统` `YARN资源管理器` `HistoryServer历史服务器`
+
 ## 所需软件及安装包
 
-
 - `VMware`:  [VMware® Workstation 17 Pro](https://www.vmware.com/go/getworkstation-win)
-
 - `Linux`: [centos-7-5-1804](https://www.centos.org/download/)
-
 - `Hadoop`: [hadoop-3.3.5.tar.gz](https://archive.apache.org/dist/hadoop/common/hadoop-3.1.3/hadoop-3.1.3.tar.gz)
-
 - `jdk1.8`:  [jdk-8u212-linux-x64.tar.gz](https://www.oracle.com/rs/java/technologies/javase/javase8u211-later-archive-downloads.html)
-
-- `XShell & XFtp`: [XShell XFtp](https://www.xshell.com/zh/free-for-home-school/)
-
+- `XShell`: [XShell](https://www.xshell.com/zh/free-for-home-school/)
+- `XFtp`: [XFtp](https://www.xshell.com/zh/free-for-home-school/)
 - 存储虚拟机的空间留够`30GB` (仅安装, 建议50GB)
 
-## 基础知识:
+## 基础知识
 
-- 掌握 `vim` 编辑器 : [b站教程](https://www.bilibili.com/video/BV13t4y1t7Wg/)
+- `Linux` 的基础知识 包括但不限于:
 
-- Linux 的基本命令操作 以及 Linux 如何添加环境变量
-
-- 以下内容的用户名皆使用`centos`用户
-
+  - 基本命令操作: `ls` `cat` `pwd` `reboot` `poweroff` ...
+  - 掌握 `vim` 编辑器 : [b站教程](https://www.bilibili.com/video/BV13t4y1t7Wg/)
+  - 以及 Linux 如何添加环境变量
+  - 是什么 `hosts` 文件
+  - 什么是 `hostname`
 - 计算机网络相关知识(ip 子网掩码 dns等)
 
-- hosts文件是什么
+### 注意
+
+- 以下内容的Hadoop启动涉及的用户皆使用 `test` 用户
 
 ## 开始
 
@@ -43,7 +47,11 @@
 
 <img src="./assets/image-20230905150946753.png" alt="image-20230905150946753" style="zoom:80%;" />
 
+这里的处理器内核数量量力而行 看自己的物理机有多少
+
 <img src="./assets/image-20230905151002798.png" alt="image-20230905151002798" style="zoom:80%;" />
+
+内存同上 但建议不低于3G 否则容易出问题
 
 <img src="./assets/image-20230905151016660.png" alt="image-20230905151016660" style="zoom:80%;" />
 
@@ -54,6 +62,8 @@
 <img src="./assets/image-20230905151042417.png" alt="image-20230905151042417" style="zoom:67%;" />
 
 <img src="./assets/image-20230905151053661.png" alt="image-20230905151053661" style="zoom:67%;" />
+
+这个大小同样的 
 
 <img src="./assets/image-20230905151106126.png" alt="image-20230905151106126" style="zoom:67%;" />
 
@@ -67,6 +77,8 @@
 
 ### 开启虚拟机
 
+![image-20230908110213348](F:\Study\大三上\大数据平台与架构设计\homework\study\hadoop-centos\assets\image-20230908110213348.png)
+
 #### 选择语言
 
 <img src="./assets/image-20230905151659733.png" alt="image-20230905151659733" style="zoom:50%;" />
@@ -79,8 +91,6 @@
 
 <img src="./assets/image-20230905151918569.png" alt="image-20230905151918569" style="zoom:50%;" />
 
-
-
 <img src="./assets/image-20230905151935178.png" alt="image-20230905151935178" style="zoom:67%;" />
 
 #### 禁用Kdump
@@ -88,8 +98,6 @@
 <img src="./assets/image-20230905152014905.png" alt="image-20230905152014905" style="zoom: 67%;" />
 
 <img src="./assets/image-20230905152027330.png" alt="image-20230905152027330" style="zoom:67%;" />
-
-
 
 #### 磁盘分区
 
@@ -101,7 +109,7 @@
 
 <img src="./assets/image-20230905152156814.png" alt="image-20230905152156814" style="zoom:67%;" />
 
-
+这里 `Host name` 改成其他也可(但需注意后文用到的centos同样需要对应的修改), 也可等启动后在 `/etc/hostname` 修改
 
 <img src="./assets/image-20230905152221308.png" alt="image-20230905152221308" style="zoom:67%;" />
 
@@ -115,9 +123,11 @@
 
 <img src="./assets/image-20230905152330118.png" alt="image-20230905152330118" style="zoom:67%;" />
 
-#### 添加`test`用户
+#### 添加 `test` 用户
 
-这里`test`可以是其他非关键字的用户名
+这里 `test` 可以是其他非关键字的用户名
+
+这个用户将作为后续启动hadoop的用户
 
 <img src="./assets/image-20230905152434210.png" alt="image-20230905152434210" style="zoom:67%;" />
 
@@ -152,8 +162,6 @@ centos7.5的网络配置文件的位置是
 ```sh
 vim /etc/vimrc
 ```
-
-
 
 <img src="./assets/image-20230905154622661.png" alt="image-20230905154622661" style="zoom:50%;" />
 
@@ -306,7 +314,7 @@ ll /opt/
 
 <img src="./assets/image-20230906161746203.png" alt="image-20230906161746203" style="zoom:67%;" />
 
-在 `XShell` 打开 `Xftp`: 
+在 `XShell` 打开 `Xftp`:
 
 <img src="./assets/image-20230906162021877.png" alt="image-20230906162021877" style="zoom:67%;" />
 
@@ -407,7 +415,7 @@ hadoop version
 - bin: 存放对Hadoop相关服务（HDFS,YARN）进行操作的脚本
 - etc: Hadoop的配置文件目录，存放Hadoop的配置文件
 - lib: 存放Hadoop的本地库（对数据进行压缩解压缩功能）
-- sbin: 存放启动或停止Hadoop相关服务的脚本 
+- sbin: 存放启动或停止Hadoop相关服务的脚本
 - share: 存放Hadoop的依赖jar包、文档、和官方案例
 
 ```sh
@@ -517,11 +525,8 @@ poweroff
 同样的方法克隆三台
 
 - `centos101`: 暂时无用(空间不足可以不备份)
-
 - `centos102`: TODO
-
 - `centos103`: TODO
-
 - `centos104`: TODO
 
 #### 修改设备克隆出来的设备名及其静态IP
@@ -533,7 +538,7 @@ poweroff
 - 修改设备名: 需要以 `root` 用户编辑 `/etc/hostname` 文件
 - 修改静态IP配置: 需要以 `root` 用户编辑 `/etc/`
 
-`centos102` 启动完成: 
+`centos102` 启动完成:
 
 <img src="./assets/image-20230906195607790.png" alt="image-20230906195607790" style="zoom:50%;" />
 
@@ -565,7 +570,7 @@ centos102
 vim /etc/sysconfig/network-scripts/ifcfg-ens33
 ```
 
-将 `IPADDR` 的值改成 `192.168.1.102`: 
+将 `IPADDR` 的值改成 `192.168.1.102`:
 
 <img src="./assets/image-20230906200125641.png" alt="image-20230906200125641" style="zoom:50%;" />
 
@@ -575,9 +580,9 @@ vim /etc/sysconfig/network-scripts/ifcfg-ens33
 reboot
 ```
 
-重启后虚拟机 `centos102` 的ip将更改为 `192.168.1.102` 
+重启后虚拟机 `centos102` 的ip将更改为 `192.168.1.102`
 
-在 `XShell` 中再次使用先前配置的 `centos100` 就无法再次连接  
+在 `XShell` 中再次使用先前配置的 `centos100` 就无法再次连接
 
 可以复制 `XShell` 中的配置:
 
@@ -782,19 +787,20 @@ ssh-copy-id centos10y
 
 #### 集群部署规划
 
-| 虚拟机 \ 分布式 | HDFS 分布式文件系统 | YARN 资源管理器 |
-| ------------------- | -------------------- | --------------- |
-| centos102           | NameNode + DataNode | NodeManager     |
-| centos103           | DataNode             | NodeManager + ResourceManager |
-| centos104           | SecondaryNameNode + DataNode | NodeManager |
+
+| 虚拟机 \ 分布式 | HDFS 分布式文件系统          | YARN 资源管理器               |
+| --------------- | ---------------------------- | ----------------------------- |
+| centos102       | NameNode + DataNode          | NodeManager                   |
+| centos103       | DataNode                     | NodeManager + ResourceManager |
+| centos104       | SecondaryNameNode + DataNode | NodeManager                   |
 
 #### 集群默认配置文件
 
 集群的默认配置文件及其所在位置 (**无需更改**):
 
-- `core-default.xml`:  hadoop-common-3.1.3.jar/ core-default.xml 
+- `core-default.xml`:  hadoop-common-3.1.3.jar/ core-default.xml
 - `hdfs-default.xml`:  hadoop-hdfs-3.1.3.jar/ hdfs-default.xml
-- `yarn-default.xml`:  hadoop-yarn-common-3.1.3.jar/ yarn-default.xml 
+- `yarn-default.xml`:  hadoop-yarn-common-3.1.3.jar/ yarn-default.xml
 - `mapred-default.xml`:  hadoop-mapreduce-client-core-3.1.3.jar/ mapred-default.xml
 
 #### 集群自定义配置文件
@@ -968,7 +974,7 @@ cd /opt/module/hadoop-3.1.3/etc/hadoop
     <name>yarn.nodemanager.vmem-check-enabled</name>
     <value>false</value>
   </property>
-    
+  
 </configuration>
 ```
 
@@ -1020,6 +1026,7 @@ xsync /opt/module/hadoop-3.1.3/etc/hadoop/
 
 #### 集群常用端口
 
+
 | Daemon            | App                        | Hadoop2     | Hadoop3 |
 | ----------------- | -------------------------- | ----------- | ------- |
 | NameNode Port     | Hadoop HDFS NameNode       | 8020 / 9000 | 9820    |
@@ -1059,6 +1066,7 @@ sbin/start-dfs.sh
 #### 启动YARN
 
 然后在 `centos103` 的 `$HADOOP_HOME` 下输入:
+
 ```sh
 sbin/start-yarn.sh
 ```
@@ -1152,8 +1160,6 @@ jpsall
 xsync etc/hadoop/mapred-site.xml
 ```
 
-
-
 <img src="./assets/image-20230907090308849.png" alt="image-20230907090308849" style="zoom:50%;" />
 
 #### 配置日志聚集
@@ -1208,42 +1214,6 @@ jpsall
 http://centos102:19888/jobhistory/logs
 
 <img src="./assets/image-20230907091309172.png" alt="image-20230907091309172" style="zoom: 33%;" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <center>
 <a href="https://github.com/winingYang/hadoop-note/edit/master/hadoop-centos/Hadoop-Centos.md">
