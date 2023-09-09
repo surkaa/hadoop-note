@@ -525,9 +525,9 @@ poweroff
 同样的方法克隆三台
 
 - `centos101`: 暂时无用(空间不足可以不备份)
-- `centos102`: TODO
-- `centos103`: TODO
-- `centos104`: TODO
+- `centos102`: `NameNode` `DataNode` `NodeManager`
+- `centos103`: `DataNode` `NodeManager` `ResourceManager`
+- `centos104`: `SecondaryNodeManager` `DataNode` `NodeManager`
 
 #### 修改设备克隆出来的设备名及其静态IP
 
@@ -978,7 +978,7 @@ cd /opt/module/hadoop-3.1.3/etc/hadoop
 </configuration>
 ```
 
-##### yarn-site.xml
+##### mapred-site.xml
 
 ```xml
 <?xml version="1.0"?>
@@ -1217,6 +1217,6 @@ http://centos102:19888/jobhistory/logs
 
 <center>
 <a href="https://github.com/winingYang/hadoop-note/edit/master/hadoop-centos/Hadoop-Centos.md">
-在 GitHub 上编辑此页
+在 GitHub 上浏览此页
 </a>
 </center>
