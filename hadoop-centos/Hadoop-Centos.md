@@ -1216,7 +1216,7 @@ http://centos102:19888/jobhistory/logs
 <img src="./assets/image-20230907091309172.png" alt="image-20230907091309172" style="zoom: 33%;" />
 
 <center>
-<a href="https://github.com/winingYang/hadoop-note/edit/master/hadoop-centos/Hadoop-Centos.md">
+<a href="https://github.com/surkaa/hadoop-note/edit/master/hadoop-centos/Hadoop-Centos.md">
 在 GitHub 上浏览此页
 </a>
 </center>
